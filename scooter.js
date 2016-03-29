@@ -192,6 +192,12 @@
 				show.config.plate.attr('id', plateId);
 				show.config.plate.appendTo(show.elements.scaler);
 
+				// Ensure that the plate has at least relative positioning
+				var platePosition = show.elements.plate.css('position');
+				if (platePosition !== 'absolute') {
+					show.elements.plate.css('position', 'relative');
+				}
+
 				// Save reference to plate
 				show.elements.plate = $('#' + plateId);
 
@@ -233,7 +239,7 @@
 				show.elements.viewport.on('wheel mousewheel DOMMouseScroll', function(event) {
 					
 					// Prevent scrolling of the larger page when mouse wheel is used over viewport
-					event.preventDefault();
+					if (show.config.minZoom !== show.config.maxZoom) event.preventDefault();
 
 					// Call a scale animation
 					scooter.movement.scale(event, show);
