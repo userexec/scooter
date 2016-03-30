@@ -192,14 +192,14 @@
 				show.config.plate.attr('id', plateId);
 				show.config.plate.appendTo(show.elements.scaler);
 
+				// Save reference to plate
+				show.elements.plate = $('#' + plateId);
+
 				// Ensure that the plate has at least relative positioning
 				var platePosition = show.elements.plate.css('position');
 				if (platePosition !== 'absolute') {
 					show.elements.plate.css('position', 'relative');
 				}
-
-				// Save reference to plate
-				show.elements.plate = $('#' + plateId);
 
 			},
 
